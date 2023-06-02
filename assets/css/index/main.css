@@ -1,0 +1,47 @@
+main {
+    margin: 30px auto;
+}
+
+/* só posts de texto */
+.post_texto {
+    border: 1px solid #00000065;
+    border-radius: 10px;
+    padding: 10px;
+    max-width: 500px;
+    margin-bottom: 20px;
+}
+
+/* grupo de usuario quê publicou o post */
+._group_usuario_post_text {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+
+/* imagem do usuario de quem publicou o post */
+._group_usuario_post_text ._img_perfil_post {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    /* border: 2px solid #000000; */
+    margin-right: 5px;
+}
+
+
+
+/* post img */
+.post_img {
+    background: #00000021;
+    padding: 10px;
+    max-width: 500px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+._group_conteudo_post_img_text {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    gap: 10px;
+}

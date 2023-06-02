@@ -1,0 +1,108 @@
+.container_add_post {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* botão de adicionar ou img ou texto */
+.container_add_post .add {
+    background: #00000063;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #00000063;
+    cursor: pointer;
+}
+
+.container_add_post .add:hover {
+    background: #a2a2a263;
+}
+
+/* janela para adicionar texto */
+.container_add_post ._add_text_post_window {
+    position: absolute;
+    top: 20px;
+
+    width: 40%;
+    height :50%;
+    /* display: flex; */
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    background-color: #000000bb;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.container_add_post span {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #fff;
+}
+
+.container_add_post ._textarea_post_texto {
+    padding: 10px;
+    font-size: 14pt;
+    width: 90%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    outline: none;
+}
+
+.container_add_post ._btn_enviar_post_text, ._btn_cancelar_post_text {
+    padding: 0px 10px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.container_add_post ._buttons {
+    display: flex;
+    gap: 10px;
+}
+
+
+
+/* janela para adicionar img */
+.container_add_post ._add_img_post_window {
+    position: absolute;
+    top: 20px;
+
+    width: 40%;
+    height :50%;
+    /* display: flex; */
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    background-color: #000000bb;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.container_add_post span {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #fff;
+}
+
+.container_add_post ._input_file_post_img {
+    width: 90%;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.container_add_post ._textarea_post_img {
+    padding: 10px;
+    font-size: 14pt;
+    width: 90%;
+    height: 50px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    outline: none;
+}
+
+.container_add_post ._btn_enviar_post_img {
+    padding: 5px 10px;
+    cursor: pointer;
+}
