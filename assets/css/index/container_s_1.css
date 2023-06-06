@@ -40,6 +40,8 @@ header {
 .container_s_1 .container_perfil ._perfil_user ._img_perfil {
     width: 80px;
     height: 80px;
+    object-fit: cover;
+
     border-radius: 50%;
     border: 2px solid #ffffff7d;
     margin-bottom: 5px;

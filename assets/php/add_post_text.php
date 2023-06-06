@@ -2,12 +2,10 @@
 
 include "conexao.php";
 
-$nome_usuario = $_GET['usuario'];
-$post_texto = $_GET['post_texto'];
+$nome_usuario = $_POST['usuario'];
+$post_texto = $_POST['post_texto'];
 
-$ftPerfil = $_GET["ftPerfil"];
-
-$imagePath = "assets/img_perfil/" . $ftPerfil;
+$imagePath = $_POST["ftPerfil"];
 
 mysqli_query($conn, "INSERT INTO geral (img_perfil,usuario,texto) VALUES ('$imagePath','$nome_usuario','$post_texto') ");
 

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/cadastro/form.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <form method="post" action="assets/php/add_cadastro.php" enctype="multipart/form-data">
+        
+        <div class="part1_form g">
+            <h1>Cadastro</h1>
+
+            <label class="inputLabel" for="usuario">Nome de usuario:</label>
+            <input type="text" class="inputUser" name="usuario" id="usuario" placeholder="user@123" autocomplete="off">
+    
+            <label class="inputLabel" for="senha">Digite uma senha</label>
+            <input type="text" class="inputUser" name="senha" id="senha" placeholder="*******" autocomplete="off">
+            <span class="alerta_senha a">máximo 8 caracteres</span>
+
+            <label class="inputLabel" for="conf_senha">Confirmar senha</label>
+            <input type="password" class="inputUser" id="conf_senha" placeholder="*******" autocomplete="off">
+            <span class="alerta_senha b">Senhas diferente</span>
+
+            <button class="btn_prox btnUser" type="button">Proximo</button>
+        </div>
+
+        <div class="part2_form g">
+            <img class="img_perfil_cadastro" src="assets/img_perfil/padrao.png" alt="imagem de perfil">
+            <label for="img_perfil">Imagem de perfil</label>
+            <input type="file" name="img_perfil" id="img_perfil">
+    
+            <button class="btn_prox_fim btnUser" type="button">Proximo</button>
+        </div>
+
+        <div class="part3_form_fim">
+            <h2></h2>
+            <button class="btnUser" type="submit">Logar agora!</button>
+        </div>
+
+    </form>
+
+    <script src="assets/script/escolherIMG.js"></script>
+    <script src="assets/script/btnProxAcao.js"></script>
+    <script src="assets/script/keyUpSenhas.js"></script>
+    <script>
+        
+    </script>
+
+</body>
+</html>

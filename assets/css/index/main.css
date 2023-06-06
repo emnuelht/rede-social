@@ -1,5 +1,25 @@
 main {
-    margin: 30px auto;
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    background-color: #00000021;
+    padding: 20px;
+
+    overflow-y: auto;
+    height: 70vh;
+}
+
+main .data {
+    font-size: 8pt;
+    width: 100%;
+    margin-left: 10px;
+    text-align: end;
+}
+
+.btn_scroll_baixo {
+    display: none;
 }
 
 /* só posts de texto */
@@ -7,7 +27,7 @@ main {
     border: 1px solid #00000065;
     border-radius: 10px;
     padding: 10px;
-    max-width: 500px;
+    max-width: 550px;
     margin-bottom: 20px;
 }
 
@@ -23,6 +43,7 @@ main {
 ._group_usuario_post_text ._img_perfil_post {
     width: 30px;
     height: 30px;
+    object-fit: cover;
     border-radius: 50%;
     /* border: 2px solid #000000; */
     margin-right: 5px;

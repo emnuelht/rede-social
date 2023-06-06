@@ -2,17 +2,21 @@
 
 session_start();
 
-if (!isset($_SESSION['usuario'])) {
+if (!isset($_SESSION['usuario']) || $_SESSION['usuario'] == false) {
     header('Location: login.php');
     exit;
 }
 
 $usuario = $_SESSION['usuario'];
-$imagePath = $_SESSION['image'];
+$senha = $_SESSION['senha'];
+$imagePath = $_SESSION['imagem'];
 
-if (file_exists($imagePath)) {
-    $conteudoImagem = file_get_contents($imagePath);
-    $imagemBase64 = base64_encode($conteudoImagem);
+include "assets/php/conexao.php";
+if ($imagePath === "") {
+    $sql = mysqli_query($conn,"SELECT * FROM usuario WHERE usuario='$usuario' AND senha='$senha'");
+    $row = mysqli_fetch_assoc($sql);
+    $dy = $row['img_perfil'];
+    $imagePath = "assets".str_replace("..","",$dy);
 }
 
 ?>
@@ -28,10 +32,12 @@ if (file_exists($imagePath)) {
     <link rel="stylesheet" href="assets/css/index/container_s_1.css">
     <link rel="stylesheet" href="assets/css/index/main.css">
     <link rel="stylesheet" href="assets/css/index/add_post.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="assets/script/ajax_atualizando.js"></script>
 </head>
 <body>
-
-    
+  
     <header>
         <p>Geral</p>
     </header>
@@ -45,23 +51,28 @@ if (file_exists($imagePath)) {
             + [img]
         </div>
 
-        <form class="_add_text_post_window" action="assets/php/add_post_text.php" method="get">
+        <form class="_add_text_post_window">
             <span>Adicionar texto</span>
-            <input type="hidden" name="usuario" value="usuario@123">
-            <input type="hidden" name="ftPerfil" value="img_perfil.jpg">
+            <input type="hidden" name="usuario" value="<?php echo $usuario?>">
+            <input type="hidden" name="ftPerfil" value="<?php echo $imagePath?>">
             <textarea class="_textarea_post_texto" name="post_texto" cols="40" rows="10"></textarea>
             <div class="_buttons">
                 <button class="_btn_cancelar_post_text" type="button">Cancelar</button>
-                <button class="_btn_enviar_post_text" type="submit">Enviar</button>
+                <button class="_btn_enviar_post_text" onclick="dataText()" type="button">Enviar</button>
             </div>
         </form>
 
-        <div class="_add_img_post_window">
+        <form class="_add_img_post_window" enctype="multipart/form-data">
             <span>Adicionar Imagem</span>
-            <input class="_input_file_post_img" type="file" name="" id="">
-            <textarea class="_textarea_post_img" name="" id="" cols="40" rows="10"></textarea>
-            <button class="_btn_enviar_post_img">Enviar</button>
-        </div>
+            <input type="hidden" name="usuario" value="<?php echo $usuario?>">
+            <input type="hidden" name="ftPerfil" value="<?php echo $imagePath?>">
+            <input class="_input_file_post_img" type="file" name="post_img">
+            <textarea class="_textarea_post_img" name="post_img_texto" cols="40" rows="10"></textarea>
+            <div class="_buttons">
+                <button class="_btn_cancelar_post_img" type="button">Cancelar</button>
+                <button class="_btn_enviar_post_img" onclick="dataIMG()" type="button">Enviar</button>
+            </div>
+        </form>
     </div>
     
     <div class="container_s_1">
@@ -74,62 +85,28 @@ if (file_exists($imagePath)) {
                 <ul class="_group_options">
                     <a class="_link_li_options" href="#"><li class="_li_options">Perfil</li></a>
                     <a class="_link_li_options" href="#"><li class="_li_options">Inicio</li></a>
-                    <a class="_link_li_options" href="#"><li class="_li_options">Sair</li></a>
+                    <a class="_link_li_options" href="assets/php/logout.php"><li class="_li_options">Sair</li></a>
                 </ul>
             </div>
         </div>
 
         
-        <main>
-
-        <?php
-
-            include "assets/php/conexao.php";
-
-            $sql = mysqli_query($conn,"SELECT * FROM geral");
-            
-            while ($row = mysqli_fetch_assoc($sql)) {
-
-                if (!empty($row['texto'])) {
-                    echo '
-                        <div class="post_texto">
-                            <div class="_group_usuario_post_text">
-                                <img class="_img_perfil_post" src="'.$row['img_perfil'].'">
-                                <span class="_nome_usuario_post">'.$row['usuario'].'</span>
-                            </div>
-                            
-                            <div class="_group_conteudo_post_text">
-                                <span>'.$row['texto'].'</span>
-                            </div>
-                        </div>
-                    ';
-                }
-
-                if (!empty($row['img_post'])) {
-                    echo '
-                        <div class="post_img">
-                            <div class="_group_usuario_post_text">
-                                <img class="_img_perfil_post" src="'.$row['img_perfil'].'">
-                                <span class="_nome_usuario_post">'.$row['usuario'].'</span>
-                            </div>
-                            
-                            <div class="_group_conteudo_post_img_text">
-                                <img class="_img_post" src="assets/img/img_perifl.gif">
-                                <p class="_text_post">
-                                    <span>'.$row['texto'].'</span>
-                                </p>
-                            </div>
-                        </div>
-                    ';
-                }
-
-            }
-
-        ?>
-        </main>
+        <main></main>
         
     </div>
+    <span class="btn_scroll_baixo">baixo</span>
 
     <script src="assets/script/index.js"></script>
+    <script src="assets/script/enviando_post.js"></script>
+    <script>
+        document.querySelector('._input_file_post_img').addEventListener('change', function() {
+    var arquivo = querySelector('._input_file_post_img').files[0];
+    var tamanhoLimite = 1 * 1024 * 1024;
+    if (arquivo && arquivo.size > tamanhoLimite) {
+      alert('A imagem selecionada excede o tamanho máximo permitido.');
+      querySelector('._input_file_post_img').value = '';
+    } 
+});
+    </script>
 </body>
 </html>
